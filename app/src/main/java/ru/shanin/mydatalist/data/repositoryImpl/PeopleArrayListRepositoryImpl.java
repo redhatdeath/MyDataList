@@ -24,7 +24,7 @@ public class PeopleArrayListRepositoryImpl implements PeopleDomainRepository {
     private static int autoIncrementId = 0;
 
     {
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 5000; i++) {
             peopleAddNew(NewData.newPeople());
         }
     }
@@ -41,7 +41,7 @@ public class PeopleArrayListRepositoryImpl implements PeopleDomainRepository {
         if (people.get_id() == People.UNDEFINED_ID)
             people.set_id(autoIncrementId++);
         data.add(people);
-        data.sort(People.bySFN);
+        data.sort(People.byFSN);
         updateList();
     }
 

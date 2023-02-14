@@ -11,28 +11,29 @@ import ru.shanin.mydatalist.domain.usecases.PeopleGetByIdUseCase;
 
 
 public class AppStart extends Application {
-    public static final Boolean isLog = !false;
-
     public static PeopleArrayListRepositoryImpl impl;
     public static PeopleGetByAllUseCase peopleGetByAll;
     public static PeopleGetByIdUseCase peopleGetById;
     public static PeopleAddNewUseCases peopleAddNew;
     public static PeopleEditByIdUseCase peopleEditById;
-    public static PeopleDeleteByIdUseCase peopleDeleteByIdUseCase;
-
+    public static PeopleDeleteByIdUseCase peopleDeleteById;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        setupDataLayout();
+        setupRepositoryImpl();
+        setupUseCases();
     }
 
-    private void setupDataLayout() {
+    private void setupRepositoryImpl() {
         impl = new PeopleArrayListRepositoryImpl();
+    }
+
+    private void setupUseCases() {
         peopleGetByAll = new PeopleGetByAllUseCase(impl);
         peopleGetById = new PeopleGetByIdUseCase(impl);
         peopleAddNew = new PeopleAddNewUseCases(impl);
         peopleEditById = new PeopleEditByIdUseCase(impl);
-        peopleDeleteByIdUseCase = new PeopleDeleteByIdUseCase(impl);
+        peopleDeleteById = new PeopleDeleteByIdUseCase(impl);
     }
 }

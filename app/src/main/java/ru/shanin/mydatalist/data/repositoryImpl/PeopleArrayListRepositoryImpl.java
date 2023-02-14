@@ -1,13 +1,9 @@
 package ru.shanin.mydatalist.data.repositoryImpl;
 
-import android.util.Log;
-
 import androidx.lifecycle.MutableLiveData;
 
 import java.util.ArrayList;
 
-import ru.shanin.mydatalist.app.AppStart;
-import ru.shanin.mydatalist.data.NewData;
 import ru.shanin.mydatalist.domain.entity.People;
 import ru.shanin.mydatalist.domain.repository.PeopleDomainRepository;
 
@@ -21,20 +17,6 @@ public class PeopleArrayListRepositoryImpl implements PeopleDomainRepository {
         dataLiveData = new MutableLiveData<>();
     }
 
-    private static int autoIncrementId = 0;
-
-    {
-        for (int i = 0; i < 50; i++) {
-            peopleAddNew(NewData.newPeople());
-        }
-    }
-
-    private void updateList() {
-        dataLiveData.postValue(new ArrayList<>(data));
-        if (AppStart.isLog) {
-            Log.w("PeopleArrayListRepositoryImpl", data.size() + "\n");
-        }
-    }
 
     @Override
     public void peopleAddNew(People people) {
@@ -43,11 +25,16 @@ public class PeopleArrayListRepositoryImpl implements PeopleDomainRepository {
         updateList();
     }
 
+    private void updateList() {
+        dataLiveData.postValue(new ArrayList<>(data));
+    }
+
     @Override
     public void peopleEditById(People people) {
         People people_old = peopleGetById(people.get_id_sha256());
         peopleDeleteById(people_old);
-        peopleAddNew(people);
+        People people_new = new People(people.getPeopleInfo());
+        peopleAddNew(people_new);
     }
 
     @Override
@@ -63,7 +50,6 @@ public class PeopleArrayListRepositoryImpl implements PeopleDomainRepository {
 
     @Override
     public People peopleGetById(String _id) {
-        // TODO find by position in arraylist. not by id. need change
         People people = findByIdInData(_id);
         if (people != null)
             return people;

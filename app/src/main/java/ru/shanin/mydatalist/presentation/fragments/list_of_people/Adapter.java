@@ -1,7 +1,6 @@
 package ru.shanin.mydatalist.presentation.fragments.list_of_people;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,11 +10,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.ListAdapter;
 
 import ru.shanin.mydatalist.R;
-import ru.shanin.mydatalist.app.AppStart;
 import ru.shanin.mydatalist.domain.entity.People;
 
 
-public class Adapter        extends ListAdapter<People, ViewHolder> {
+public class Adapter extends ListAdapter<People, ViewHolder> {
 
     public static final int MAX_POOL_SIZE = 10;
     public static final int VIEW_TYPE_PEOPLE_AGE_1 = 100;
@@ -23,21 +21,15 @@ public class Adapter        extends ListAdapter<People, ViewHolder> {
     public static final int VIEW_TYPE_PEOPLE_AGE_3 = 300;
     public static final int VIEW_TYPE_PEOPLE_AGE_4 = 400;
     public static final int VIEW_TYPE_PEOPLE_AGE_DEFAULT = 500;
-
-    private static int count = 0;
-
     public OnPeopleClickListener peopleClickListener = null;
 
     public Adapter(DiffCallback diffCallback) {
         super(diffCallback);
     }
 
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        if (AppStart.isLog)
-            Log.w("onCreateViewHolder", "onCreateViewHolder, count = " + (++count));
         int layout;
         switch (viewType) {
             case VIEW_TYPE_PEOPLE_AGE_1:

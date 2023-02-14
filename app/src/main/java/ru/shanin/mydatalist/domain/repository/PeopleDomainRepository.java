@@ -16,6 +16,6 @@ public interface PeopleDomainRepository {
 
     MutableLiveData<ArrayList<People>> peopleGetAll();
 
-    People peopleGetById(int _id);
+    People peopleGetById(String _id);
 
 }

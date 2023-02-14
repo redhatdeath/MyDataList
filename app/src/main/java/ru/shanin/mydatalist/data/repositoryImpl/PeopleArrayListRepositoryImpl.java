@@ -24,7 +24,7 @@ public class PeopleArrayListRepositoryImpl implements PeopleDomainRepository {
     private static int autoIncrementId = 0;
 
     {
-        for (int i = 0; i < 5000; i++) {
+        for (int i = 0; i < 50; i++) {
             peopleAddNew(NewData.newPeople());
         }
     }
@@ -38,16 +38,14 @@ public class PeopleArrayListRepositoryImpl implements PeopleDomainRepository {
 
     @Override
     public void peopleAddNew(People people) {
-        if (people.get_id() == People.UNDEFINED_ID)
-            people.set_id(autoIncrementId++);
         data.add(people);
-        data.sort(People.byFSN);
+        data.sort(People.byID);
         updateList();
     }
 
     @Override
     public void peopleEditById(People people) {
-        People people_old = peopleGetById(people.get_id());
+        People people_old = peopleGetById(people.get_id_sha256());
         peopleDeleteById(people_old);
         peopleAddNew(people);
     }
@@ -64,11 +62,18 @@ public class PeopleArrayListRepositoryImpl implements PeopleDomainRepository {
     }
 
     @Override
-    public People peopleGetById(int _id) {
+    public People peopleGetById(String _id) {
         // TODO find by position in arraylist. not by id. need change
-        People people = data.get(_id);
+        People people = findByIdInData(_id);
         if (people != null)
             return people;
         else throw new RuntimeException("There is no element with id = " + _id);
+    }
+
+    private People findByIdInData(String id) {
+        for (People p : data)
+            if (p.get_id_sha256().equals(id))
+                return p;
+        return null;
     }
 }

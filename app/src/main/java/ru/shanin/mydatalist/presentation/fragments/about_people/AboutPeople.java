@@ -20,16 +20,16 @@ public class AboutPeople extends Fragment {
     private AboutPeopleViewModel viewModel;
 
     private static final String ARGUMENT_PEOPLE_ID = "people id";
-    private int peopleId;
+    private String peopleId;
     private People people;
 
     private int[] color = {0xAA55FF00, 0xAA550033, 0xAA550077, 0xAA5500AA, 0xAA5500FF};
 
     public static AboutPeople newInstance(
-            int peopleId
+            String peopleId
     ) {
         Bundle args = new Bundle();
-        args.putInt(ARGUMENT_PEOPLE_ID, peopleId);
+        args.putString(ARGUMENT_PEOPLE_ID, peopleId);
         AboutPeople fragment = new AboutPeople();
         fragment.setArguments(args);
         return fragment;
@@ -39,7 +39,7 @@ public class AboutPeople extends Fragment {
         Bundle args = requireArguments();
         if (!args.containsKey(ARGUMENT_PEOPLE_ID))
             throw new RuntimeException("Argument '\''People Id'\'' is absent");
-        peopleId = args.getInt(ARGUMENT_PEOPLE_ID);
+        peopleId = args.getString(ARGUMENT_PEOPLE_ID);
     }
 
     @Override

@@ -24,6 +24,10 @@ public class AppStart extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        setupDataLayout();
+    }
+
+    private void setupDataLayout() {
         impl = new PeopleArrayListRepositoryImpl();
         peopleGetByAll = new PeopleGetByAllUseCase(impl);
         peopleGetById = new PeopleGetByIdUseCase(impl);

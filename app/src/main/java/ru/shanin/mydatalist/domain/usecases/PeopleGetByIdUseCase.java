@@ -11,7 +11,7 @@ public class PeopleGetByIdUseCase {
         this.repository = repository;
     }
 
-    public People peopleGetById(int _id) {
+    public People peopleGetById(String _id) {
         return repository.peopleGetById(_id);
     }
 }

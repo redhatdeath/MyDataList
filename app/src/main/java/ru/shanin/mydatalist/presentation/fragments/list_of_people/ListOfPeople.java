@@ -22,12 +22,10 @@ public class ListOfPeople extends Fragment {
 
     private static final String ARGUMENT_IS_ONE_PANE_STATE = "is one pane";
     private Boolean isOnePane;
-
     private ListOfPeopleViewModel viewModel;
 
     private FloatingActionButton fab;
     private RecyclerView recyclerView;
-
     private Adapter adapter;
 
     public static ListOfPeople newInstance(Boolean isOnePane) {
@@ -92,8 +90,7 @@ public class ListOfPeople extends Fragment {
         fab = view.findViewById(R.id.fab);
         fab.setOnClickListener(v -> {
             //TODO Make method to action on click on fab
-            for (int i = 0; i < 5; i++)
-                viewModel.addNewPeople(NewData.newPeople());
+            viewModel.addNewPeople(NewData.newPeople());
         });
         recyclerView = view.findViewById(R.id.rv_people_list);
         recyclerView.setAdapter(adapter);
@@ -109,7 +106,7 @@ public class ListOfPeople extends Fragment {
                 Adapter.VIEW_TYPE_PEOPLE_AGE_DEFAULT, Adapter.MAX_POOL_SIZE);
     }
 
-    private void startAboutPeople(int peopleId) {
+    private void startAboutPeople(String peopleId) {
         Fragment fragment = AboutPeople.newInstance(peopleId);
         FragmentManager fragmentManager = getParentFragmentManager();
         fragmentManager.popBackStack();

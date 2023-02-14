@@ -9,7 +9,7 @@ public class DiffCallback extends DiffUtil.ItemCallback<People> {
 
     @Override
     public boolean areItemsTheSame(@NonNull People oldPeople, @NonNull People newPeople) {
-        return (oldPeople.get_id()) == (newPeople.get_id());
+        return (oldPeople.get_id_sha256()) == (newPeople.get_id_sha256());
     }
 
     @Override

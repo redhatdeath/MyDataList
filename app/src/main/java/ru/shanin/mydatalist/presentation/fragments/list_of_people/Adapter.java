@@ -15,8 +15,7 @@ import ru.shanin.mydatalist.app.AppStart;
 import ru.shanin.mydatalist.domain.entity.People;
 
 
-public class Adapter
-        extends ListAdapter<People, ViewHolder> {
+public class Adapter        extends ListAdapter<People, ViewHolder> {
 
     public static final int MAX_POOL_SIZE = 10;
     public static final int VIEW_TYPE_PEOPLE_AGE_1 = 100;
@@ -81,9 +80,9 @@ public class Adapter
         viewHolder.imPhoto.setImageResource(resID);
         viewHolder.itemView.setOnClickListener(
                 v -> {
-                    Toast.makeText(context, "people position = " + position + "\npeople _id = " + people.get_id(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "people position = " + position + "\npeople _id = " + people.get_id_sha256(), Toast.LENGTH_SHORT).show();
                     // TODO how it work now
-                    peopleClickListener.onPeopleClick(position);
+                    peopleClickListener.onPeopleClick(people.get_id_sha256());
                     // TODO how it must be work
                     //peopleClickListener.onPeopleClick(people.get_id());
                 }
@@ -105,6 +104,6 @@ public class Adapter
     }
 
     interface OnPeopleClickListener {
-        void onPeopleClick(int peopleId);
+        void onPeopleClick(String peopleId);
     }
 }

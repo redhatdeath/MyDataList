@@ -9,7 +9,7 @@ import ru.shanin.mydatalist.domain.usecases.PeopleGetByIdUseCase;
 public class AboutPeopleViewModel extends ViewModel {
     private final PeopleGetByIdUseCase getById = AppStart.peopleGetById;
 
-    protected People getPeople(int peopleId) {
+    protected People getPeople(String peopleId) {
         return getById.peopleGetById(peopleId);
     }
 

@@ -2,6 +2,8 @@ package ru.shanin.mydatalist.domain.entity;
 
 import androidx.annotation.NonNull;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 
 public class PeopleInfo {
@@ -13,6 +15,8 @@ public class PeopleInfo {
     private final String phone;
     private final ArrayList<String> listOfKnowledge;
     private final String pathToPhoto;
+
+    private String toSHA256;
 
     public PeopleInfo(
             String firstName,
@@ -29,6 +33,7 @@ public class PeopleInfo {
         this.listOfKnowledge = listOfKnowledge;
         this.pathToPhoto = pathToPhoto;
         this.age = (int) (Math.random() * 61 + 5);
+        this.toSHA256 = firstName + secondName + email + phone + (new Gson()).toJson(listOfKnowledge);
     }
 
     @NonNull
@@ -37,16 +42,8 @@ public class PeopleInfo {
         return firstName + " " + secondName;
     }
 
-    public String toMyString() {
-        return "PeopleInfo: " +
-                " firstName='" + firstName + '\'' +
-                ", secondName='" + secondName + '\'' +
-                ", age=" + age +
-                ", email='" + email + '\'' +
-                ", phone='" + phone + '\'' +
-                ", pathToPhoto='" + pathToPhoto + '\'' +
-                ", listOfKnowledge=" + listOfKnowledge +
-                " ";
+    public String getToSHA256() {
+        return toSHA256;
     }
 
     public String getFirstName() {

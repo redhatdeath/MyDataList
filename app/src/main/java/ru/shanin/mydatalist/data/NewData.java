@@ -1,6 +1,7 @@
 package ru.shanin.mydatalist.data;
 
 import java.lang.reflect.Field;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Collections;
 
